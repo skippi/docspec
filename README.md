@@ -63,14 +63,14 @@ module Foo
 end
 ```
 
-Require docspec and doctest the source file:
+Require docspec and doctest the source file using a relative path:
 
 ```crystal
 # spec/foo_spec.cr
 
 require "docspec"
 
-Docspec.doctest("src/foo.cr")
+Docspec.doctest("../src/foo.cr")
 ```
 
 Lastly, run your tests in your project's root directory.
