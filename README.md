@@ -1,5 +1,7 @@
 # docspec
 
+[![Build Status](https://travis-ci.com/skippi/docspec.svg?branch=master)](https://travis-ci.com/skippi/docspec)
+
 A crystal library for automatically testing documentation examples.
 
 Docspec is crystal's equivalent of a doctest library.
