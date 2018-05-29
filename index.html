@@ -89,13 +89,13 @@ will test that the result equals the appended expression.</p>
   <span class="k">end</span>
 <span class="k">end</span></code></pre>
 
-<p>Require docspec and doctest the source file:</p>
+<p>Require docspec and doctest the source file using a relative path:</p>
 
 <pre><code class='language-crystal'><span class="c"># spec/foo_spec.cr</span>
 
 <span class="k">require</span> <span class="s">&quot;docspec&quot;</span>
 
-<span class="t">Docspec</span>.doctest(<span class="s">&quot;src/foo.cr&quot;</span>)</code></pre>
+<span class="t">Docspec</span>.doctest(<span class="s">&quot;../src/foo.cr&quot;</span>)</code></pre>
 
 <p>Lastly, run your tests in your project's root directory.</p>
 
