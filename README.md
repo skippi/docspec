@@ -67,7 +67,7 @@ Require docspec and doctest the source file:
 ```crystal
 # spec/foo_spec.cr
 
-require "../src/docspec"
+require "docspec"
 
 Docspec.doctest("src/foo.cr")
 ```
