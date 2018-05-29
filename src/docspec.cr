@@ -48,7 +48,7 @@ module Docspec
     {% result_expr = doc_expr.strip.gsub(Docspec::DOCTEST_RESULT_PREFIX, "# =>").strip %}\
     {% if doc_expr.starts_with?("require") %}\
       {{doc_expr.id.strip}}
-    {% else %}\
+    {% elsif !doc_expr.empty? %}\
       {% expr_tokens = result_expr.split("# =>") %}\
       # {{filename.id}}:{{row.id}}
       {% for token, index in expr_tokens %}\
