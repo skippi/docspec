@@ -1,6 +1,7 @@
 # docspec
 
 [![Build Status](https://travis-ci.com/skippi/docspec.svg?branch=master)](https://travis-ci.com/skippi/docspec)
+[![Read the Docs (version)](https://img.shields.io/readthedocs/pip/stable.svg)](https://skippi.github.io/docspec/)
 
 A crystal library for automatically testing documentation examples.
 
@@ -77,6 +78,10 @@ Lastly, run your tests in your project's root directory.
 ```bash
 crystal spec
 ```
+
+## Documentation
+
+* [Official docs](https://skippi.github.io/docspec/)
 
 ## Contributing
 
