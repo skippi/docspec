@@ -6,8 +6,9 @@ module Docspec
 
   # Parses *filename* for marked examples to create specs.
   macro doctest(filename)
+    {% calling_dir = filename.filename.gsub(/[^\/]*$/, "") %}\
     {% code_line? = false %}\
-    {% for line, index in `cat #{filename}`.lines %}\
+    {% for line, index in `cd #{calling_dir} && cat #{filename}`.lines %}\
       {% if line.strip =~ /^# ```/ %}\
         {% code_line? = !code_line? %}\
       {% elsif line.strip =~ /^#/ %}\
