@@ -46,18 +46,19 @@ module Docspec
   end
 
   # :nodoc:
-  macro doctest_marked_example(line, filename, row)
+  macro doctest_marked_example(line, filename, row)\
     {% doc_expr = line.strip.gsub(Docspec::DOCTEST_PREFIX, "").strip %}\
     {% result_expr = doc_expr.strip.gsub(Docspec::DOCTEST_RESULT_PREFIX, "# =>").strip %}\
-    {% if doc_expr.starts_with?("require") %}\
-      {{doc_expr.id.strip}}
-    {% elsif !doc_expr.empty? %}\
-      {% expr_tokens = result_expr.split("# =>") %}\
+    {% expr_tokens = result_expr.split("# =>") %}\
+    {% if expr_tokens.size == 1 %}
       # {{filename.id}}:{{row.id}}
+      {{doc_expr.id.strip}}
+    {% else %}\
       {% for token, index in expr_tokens %}\
-        {% if index == 0 %}\
+        {% if index == 0 %}
+          # {{filename.id}}:{{row.id}}
           observed = ({{token.id.strip}})
-        {% else %}\
+        {% else %}
           describe %(Docspec {{filename.id}}:{{row.id}}) do
             it %(({{expr_tokens[0].id.strip}} # => {{token.id.strip}})) do
               expected = {{token.id.strip}}
