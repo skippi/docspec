@@ -17,6 +17,8 @@ module Docspec
         {% else %}\
           Docspec.doctest_comment({{line.strip}}, {{filename}}, {{index + 1}})
         {% end %}\
+      {% elsif !line.strip.empty? %}\
+        {% code_line? = false %}
       {% end %}\
     {% end %}\
   end
