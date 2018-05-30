@@ -9,9 +9,10 @@ Docspec is crystal's equivalent of a doctest library.
 
 ## Use Cases
 
-* Docspec integrates testing into your documentation.
-* Docspec encourages documentation due to integrated testing.
-* Docspec reduces boilerplate code for test cases.
+* Docspec encourages documentation by creating tests from it.
+* Docspec encourages testing by reducing boilerplate code for test cases.
+* Docspec encourages fast development by reducing boilerplate code for test
+  cases.
 
 ## Installation
 
@@ -31,7 +32,7 @@ result. If the line also had an expression appended with `# =>`, then docspec
 will test that the result equals the appended expression.
 
 In this example, we will fully doctest `Foo.bar`, while ignoring doctesting for
-`Foo.echo`:
+`Foo.add`. Note the usage of `>>`:
 
 ```crystal
 # src/foo.cr
@@ -49,16 +50,14 @@ module Foo
     "hello world"
   end
 
-  # Prints a string to stdout.
+  # Adds two numbers.
   #
   # ```
-  # Foo.echo("some text")
-  #
-  # example_text = Foo.bar # => "hello world"
-  # Foo.echo(example_text)
+  # Foo.add(1, 3) # => 4
+  # Foo.add(-2, -4) # => -6
   # ```
-  def self.echo(string)
-    print(string)
+  def self.add(a, b)
+    a + b
   end
 end
 ```
