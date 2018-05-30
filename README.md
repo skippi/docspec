@@ -25,9 +25,9 @@ dependencies:
 
 ## Usage
 
-Specdoc parses source files for any commented codeblocks with code in them. For
+Docspec parses source files for any commented codeblocks with code in them. For
 each codeblock line with a prefix of `>>`, it executes the line and stores the
-result. If the line also had an expression appended with `# =>`, then specdoc
+result. If the line also had an expression appended with `# =>`, then docspec
 will test that the result equals the appended expression.
 
 In this example, we will fully doctest `Foo.bar`, while ignoring doctesting for
