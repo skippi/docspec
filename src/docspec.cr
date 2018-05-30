@@ -46,7 +46,7 @@ module Docspec
   end
 
   # :nodoc:
-  macro doctest_marked_example(line, filename, row)\
+  macro doctest_marked_example(line, filename, row)
     {% doc_expr = line.strip.gsub(Docspec::DOCTEST_PREFIX, "").strip %}\
     {% result_expr = doc_expr.strip.gsub(Docspec::DOCTEST_RESULT_PREFIX, "# =>").strip %}\
     {% expr_tokens = result_expr.split("# =>") %}\
