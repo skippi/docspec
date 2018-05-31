@@ -7,18 +7,18 @@ module Docspec
   # Parses *filename* for marked examples to create specs.
   macro doctest(filename)
     {% calling_dir = filename.filename.gsub(/[^\/]*$/, "") %}\
-    {% code_line? = false %}\
+    {% parser = {mode: :default} %}\
     {% for line, index in `cd #{calling_dir} && cat #{filename}`.lines %}\
       {% if line.strip =~ /^# ```/ %}\
-        {% code_line? = !code_line? %}\
+        {% parser[:mode] = (parser[:mode] == :codeblock) ? :default : :codeblock %}\
       {% elsif line.strip =~ /^#/ %}\
-        {% if code_line? %}\
+        {% if parser[:mode] == :codeblock %}\
           Docspec.doctest_code_line({{line.strip}}, {{filename}}, {{index + 1}})
         {% else %}\
           Docspec.doctest_comment({{line.strip}}, {{filename}}, {{index + 1}})
         {% end %}\
       {% elsif !line.strip.empty? %}\
-        {% code_line? = false %}
+        {% parser[:mode] = :default %}\
       {% end %}\
     {% end %}\
   end
