@@ -1,5 +1,8 @@
 require "./docspec/*"
 
+# The main module of the docspec library.
+#
+# Refer to the top level README for usage.
 module Docspec
   DOCTEST_PREFIX           = /^>>/
   DOCTEST_RESULT_PREFIX    = /# =>/

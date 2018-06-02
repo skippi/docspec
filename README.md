@@ -31,8 +31,11 @@ each codeblock line with a prefix of `>>`, it executes the line and stores the
 result. If the line also had an expression appended with `# =>`, then docspec
 will test that the result equals the appended expression.
 
-In this example, we will fully doctest `Foo.bar`, while ignoring doctesting for
-`Foo.add`. Note the usage of `>>`:
+Alternatively, you can use the `[](@doctest)` annotation instead of `>>` to
+mark entire codeblocks for doctesting.
+
+In this example, we will fully doctest `Foo.bar` and `Foo.baz`, while ignoring doctesting for
+`Foo.add`. Note the usage of `>>` and `[](@doctest)`:
 
 ```crystal
 # src/foo.cr
@@ -48,6 +51,17 @@ module Foo
   # ```
   def self.bar
     "hello world"
+  end
+
+  # Subtracts two numbers.
+  #
+  # [](@doctest)
+  # ```
+  # Foo.baz(4, 2) # => 2
+  # Foo.baz(-8, -4) # => -4
+  # ```
+  def self.baz(a, b)
+    a - b
   end
 
   # Adds two numbers.
