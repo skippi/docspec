@@ -3,15 +3,17 @@ require "./docspec/*"
 module Docspec
   DOCTEST_PREFIX        = /^>>/
   DOCTEST_RESULT_PREFIX = /# =>/
+  COMMENT_REGEX = /^\s*#/
+  CODEBLOCK_REGEX = /^\s*#\s*```/
 
   # Parses *filename* for marked examples to create specs.
   macro doctest(filename)
     {% calling_dir = filename.filename.gsub(/[^\/]*$/, "") %}\
     {% parser = {mode: :default} %}\
     {% for line, index in `cd #{calling_dir} && cat #{filename}`.lines %}\
-      {% if line.strip =~ /^# ```/ %}\
+      {% if line =~ Docspec::CODEBLOCK_REGEX %}\
         {% parser[:mode] = (parser[:mode] == :codeblock) ? :default : :codeblock %}\
-      {% elsif line.strip =~ /^#/ %}\
+      {% elsif line =~ Docspec::COMMENT_REGEX %}\
         {% if parser[:mode] == :codeblock %}\
           Docspec.doctest_code_line({{line.strip}}, {{filename}}, {{index + 1}})
         {% else %}\
